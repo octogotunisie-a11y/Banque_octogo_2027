@@ -241,7 +241,7 @@
       .nav-burger.open span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
-      @media (max-width: 860px) {
+      @media (max-width: 1180px) {
         .nav-in {
           grid-template-columns: auto auto;
         }
@@ -4377,7 +4377,24 @@
           gap: 10px;
         }
       }
-    </style>
+    
+      /* ===== Correctifs audit 09/2026 : lisibilité, contraste, ergonomie ===== */
+      .carte-champ span, .ac-axe-t, .sc-kicker, .sous, .stat span, .day-table th, .ac-theme,
+      .cr-ax, .cr-theme, .fil, .hero-eyebrow, .hero-eyebrow-secteur, .programme-code, .sa-fil,
+      .chantier-detail-card .tri, .day-head span, .programme-meta span, .sc-cle .accroche .fil { font-size: 12px !important; }
+      .showcase .fil, .sc-card.sc-c .sc-kicker { color: #5fb8aa !important; }
+      .day-head span { color: var(--or2) !important; }
+      .ac-num { color: #8c6b24 !important; opacity: 1 !important; }
+      .chips .chip { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; max-width: 100% !important; height: auto !important; line-height: 1.4; text-align: left; }
+      #vue-interne[data-vue="simu"] #fondements, #vue-interne[data-vue="trivium"] #fondements { display: none; }
+      .image-placeholder:has(img[src]:not([src=""])) { border: 0; background: transparent; }
+      .image-placeholder:has(img[src]:not([src=""]))::before { display: none; }
+      .hero-art .image-placeholder img { height: 104%; align-self: flex-start; }
+      @media (max-width: 1180px) {
+        .nav-links { transition: transform .3s cubic-bezier(.2,.8,.2,1), visibility .3s; }
+        .nav-links:not(.open) { visibility: hidden; }
+      }
+</style>
   </head>
   <body>
     <nav id="navbar" aria-label="Navigation principale">
@@ -4435,8 +4452,7 @@
               OCTOGO |
               <span class="hero-eyebrow-secteur"
                 >DANS LE CERVEAU D&#x27;UNE BANQUE</span
-              >
-              — Édition BANQUE
+              >&nbsp;— Édition BANQUE
             </div>
             <h1>
               L&#x27;IA fait les calculs.<br /><span
@@ -4711,7 +4727,7 @@
           />
         </div>
         <div class="carte-champ">
-          <span>Téléphone</span><a href="tel:+21698128546">+216 28 262 829</a>
+          <span>Téléphone</span><a href="tel:+21628262829">+216 28 262 829</a>
         </div>
         <div class="carte-champ">
           <span>E-mail</span
@@ -4731,9 +4747,9 @@
         </button>
         <div class="coord">
           Fredj Bouslama — Fondateur &amp; Neuropraticien · CEO<br />
-          +216 28 262 829 ·
+          <a href="tel:+21628262829">+216 28 262 829</a> ·
           <a href="mailto:contact@octogo.tn">contact@octogo.tn</a> ·
-          <a href="https://www.octogo.tn">www.octogo.tn</a><br />
+          <a href="https://www.octogo.tn" target="_blank" rel="noopener">www.octogo.tn</a><br />
           École de la Cohérence Adaptative · Sousse, Tunisie
         </div>
       </div>
@@ -7240,6 +7256,7 @@
         if (!VUES_VALIDES.includes(nom)) nom = "tout";
         homeSections.classList.add("cachee");
         vueInterne.classList.add("visible");
+        vueInterne.dataset.vue = nom;
         activerOnglet(nom);
         const t = document.getElementById("vue-titre");
         if (t) t.textContent = VUES_TITRES[nom] || "";
@@ -7507,7 +7524,7 @@
         let h = "";
         if (filtre === "tout" || filtre === "sessions") {
           h += barreCmp();
-          h += '<div class="groupe">15 sessions — un axe chacune</div>';
+          h += '<div class="groupe">' + S.length + ' sessions — un axe chacune</div>';
           h +=
             '<div class="axes-grid">' +
             S.map(
@@ -7531,7 +7548,7 @@
         }
         if (filtre === "tout" || filtre === "chantiers") {
           if (filtre === "chantiers") h += barreCmp();
-          h += '<div class="groupe">11 chantiers — un triangle chacun</div>';
+          h += '<div class="groupe">' + C.length + ' chantiers — un triangle chacun</div>';
           h +=
             '<div class="chantiers-list">' +
             C.map(
@@ -8089,7 +8106,7 @@
   .agenda-box{border:1px solid #d9d3c1;border-radius:8px;padding:12px;margin-top:12px} .agenda-box h3{margin:0 0 6px;font-family:Georgia,serif;color:#0F2440;font-size:15px} .agenda-row{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:5px 0;border-top:1px solid #eee4ce} .agenda-type{font-size:9.5px;letter-spacing:.08em;font-weight:700;color:#7a6127} .agenda-detail{font-size:10.5px;color:#5E5A4C}
   .remise{font-size:10.5px;margin-top:8px} .remise-grille span{display:inline-block;border:1px solid #d9d3c1;border-radius:999px;padding:2px 8px;margin:3px 3px 0 0} .remise-grille span.on{background:#0F2440;color:#fff} .roi{border:1px solid #d9d3c1;border-radius:8px;padding:10px;margin-top:10px} .roi ul{margin:6px 0 0 18px} .roi-note{font-size:10.5px;color:#5E5A4C} .mesure-impact{margin-top:10px}
   .tv-brique{border:1px solid #d9d3c1;border-radius:8px;padding:12px;margin-top:10px} .tv-code{font-size:11px;letter-spacing:.1em;color:#7a6127;font-weight:700} .niveaux{margin:6px 0 0 18px} .tv-temps{margin-top:8px} .note{border-left:3px solid #b8923e;padding:8px 10px;font-size:11px;margin-top:10px} .exemple{font-style:italic;border-left:2px solid #d3b268;padding-left:8px;margin-top:6px}
-  .f{margin-top:18px;font-size:10.5px;color:#5E5A4C;border-top:1px solid #d9d3c1;padding-top:8px} .btn{margin:10px 0;padding:8px 14px;font:inherit} @media print{.btn{display:none}}</style>
+  .f{margin-top:18px;font-size:12px;color:#5E5A4C;border-top:1px solid #d9d3c1;padding-top:8px} .btn{margin:10px 0;padding:8px 14px;font:inherit} @media print{.btn{display:none}}</style>
   </head><body>
   <button class="btn" onclick="window.print()">Imprimer / Enregistrer en PDF</button>
   <div class="h"><img src="${logo}" alt="OCTOGO"><div><div class="t">Programme détaillé OCTOGO</div><div class="s">OCTOGO FORMATION &amp; CONSEIL · ÉDITION ${EDITION.secteur.toUpperCase()} ${EDITION.annee}</div></div></div>
@@ -8431,7 +8448,7 @@
       function triviumHTML() {
         const b = briqueActive();
         return `<div class="programme-hero">
-  <div style="font-size:11px;letter-spacing:.16em;color:#d3b268;font-weight:800">PARCOURS FONDATEUR · ${EDITION.secteur.toUpperCase()} ${EDITION.annee}</div>
+  <div style="font-size:12px;letter-spacing:.16em;color:#d3b268;font-weight:800">PARCOURS FONDATEUR · ${EDITION.secteur.toUpperCase()} ${EDITION.annee}</div>
   <h2>Composer mon TRIVIUM</h2>
   <p>Trois arts qui convergent. Vous choisissez la session centrale ; ÉVEIL et VOL D'AIGLE encadrent toujours le parcours.</p>
   <div class="wizard-steps tv-steps" role="tablist" aria-label="Étapes">
@@ -8796,7 +8813,7 @@
         v.toLocaleString("fr-FR").replace(/\u202f|\u00a0/g, " ") + " DT";
       function simuHTML() {
         return `<div class="programme-hero">
-   <div style="font-size:11px;letter-spacing:.16em;color:#d3b268;font-weight:800">CONFIGURATEUR OCTOGO · ${EDITION.secteur.toUpperCase()} ${EDITION.annee}</div>
+   <div style="font-size:12px;letter-spacing:.16em;color:#d3b268;font-weight:800">CONFIGURATEUR OCTOGO · ${EDITION.secteur.toUpperCase()} ${EDITION.annee}</div>
    <h2>Créer votre programme</h2>
    <p>Décrivez votre population, choisissez vos priorités et votre ambition. L'application génère ensuite votre programme détaillé et vous permet de simuler son agenda.</p>
    <div class="wizard-steps" role="tablist" aria-label="Étapes du configurateur">
@@ -8835,7 +8852,7 @@
         document.getElementById("q-enj").innerHTML = c.pb
           .map(
             (p, i) =>
-              `<span class="chip ${i < 3 ? "on" : ""}" data-e="${i}" role="button" aria-pressed="${i < 3 ? "true" : "false"}" tabindex="0">${DIM[p.dim]} · ${p.p.length > 70 ? p.p.slice(0, 68) + "…" : p.p}</span>`,
+              `<span class="chip ${i < 3 ? "on" : ""}" data-e="${i}" role="button" aria-pressed="${i < 3 ? "true" : "false"}" tabindex="0">${DIM[p.dim]} · ${p.p}</span>`,
           )
           .join("");
         document.getElementById("q-res").innerHTML = "";
